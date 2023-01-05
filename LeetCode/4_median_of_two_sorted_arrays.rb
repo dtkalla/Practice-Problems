@@ -32,13 +32,12 @@ def find_median_sorted_arrays(nums1, nums2)
     nums = []
     while nums1.length > 0 && nums2.length > 0 # based on merge sort
         if nums1[-1] > nums2[-1]
-            nums << nums1.pop
+            nums << nums1.pop # can't remember if shift is O(1) or O(n), so using pop instead
         else
             nums << nums2.pop
         end
     end
-    nums = nums1 + nums2 + nums.reverse
-    # return nums
+    nums = nums1 + nums2 + nums.reverse # needs to reverse because I used pop
     len = nums.length
     if len % 2 == 0
         (nums[len/2] + nums[len/2-1])/2.0

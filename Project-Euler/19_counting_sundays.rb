@@ -30,7 +30,7 @@ def cen_code(yr)
     0
 end
 
-def lyc(yr,mo)
+def lyc(yr,mo) # lyc = leap year constant.  Leap years shift the day by 1, but this shouldn't apply to January and February, before leap day
     return 0 if mo > 2
     return 1 if yr % 4 == 0
     0

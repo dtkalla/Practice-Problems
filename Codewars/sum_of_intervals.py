@@ -47,7 +47,6 @@
 
 def sum_of_intervals(intervals):
     nums = set()
-    print(nums)
     for interval in intervals:
         for i in range(interval[0],interval[-1]):
             nums.add(i)

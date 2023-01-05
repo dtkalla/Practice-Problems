@@ -30,7 +30,7 @@
 
 def first_missing_positive(nums)
     hash = Hash.new
-    nums.each {|num| hash[num] = true}
+    nums.each {|num| hash[num] = true} # would this be faster as a set?
     i = 1
     while true
         return i unless hash[i]

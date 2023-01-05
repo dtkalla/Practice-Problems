@@ -32,12 +32,11 @@ def max_points(points)
         line = Hash.new(1)
         points.each do |point|
             if point == p1
-                1 + 1
-            elsif point[0] == p1[0]
+                1 + 1 # not sure why I wrote this -- I think this just needs to do nothing
+            elsif point[0] == p1[0] # slope is impossible to compute, but these are on the same line
                 line['vertical'] += 1
             else
-                m = (point[1]-p1[1])*1.0/(point[0]-p1[0])
-                #b = point[1] - m * point[0]
+                m = (point[1]-p1[1])*1.0/(point[0]-p1[0]) # find slope
                 line[[m]] += 1
             end
         end
