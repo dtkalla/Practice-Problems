@@ -32,7 +32,7 @@ def max_points(points)
         line = Hash.new(1)
         points.each do |point|
             if point == p1
-                1+1
+                1 + 1
             elsif point[0] == p1[0]
                 line['vertical'] += 1
             else
