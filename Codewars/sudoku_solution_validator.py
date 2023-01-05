@@ -11,8 +11,16 @@ def valid_solution(board):
         for j in range(9):
             if not group[j] in column:
                 return False
-    first_box = board[0][0:3] + board[1][0:3] + board [2][0:3] #fix to check other boxes
-    for i in range(9):
-        if not group[i] in first_box:
-            return False
-    return True
+    a = 0
+    b = 0
+    for i in range(9): # first loop checks first box
+        box = board[a][b:b+3] + board[a+1][b:b+3] + board [a+2][b:b+3]
+        for i in range(9):
+            if not group[i] in box:
+                return False
+        a += 3 # increment a / b to check other boxes
+        if a == 9:
+            a = 0
+            b += 3
+
+    return True # all checks pass!
