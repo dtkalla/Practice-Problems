@@ -14,19 +14,21 @@ def fib(n):
         return 0
     elif n == 1:
         return 1
-    if n < 0: #generalize for negatives
+    if n < 0: #generalize for negatives; doesn't work for very large negatives
         f = 1
         f_plus_1 = 0
         for i in range(-n - 1):
             [f_plus_1,f] = [f,f_plus_1 - f]
         return f
-    elif n > 1000: #Djikstra's algorithm for large n
+    elif n > 10: #algorithm for large n
         x = (n + 1)//2
+        lower_fib = fib(x-1)
+        higher_fib = fib(x)
         if n % 2 == 0:
-            return (2 * fib(x-1) + fib(x)) * fib(x)
+            return (2 * lower_fib + higher_fib) * higher_fib
         else:
-            return fib(x-1)**2 + fib(x)**2
-    else: #normal algorithm for non-large n
+            return lower_fib**2 + higher_fib**2
+    else: #normal algorithm for small n
         f_minus_1 = 1
         f = 1
         for i in range(2,n):
