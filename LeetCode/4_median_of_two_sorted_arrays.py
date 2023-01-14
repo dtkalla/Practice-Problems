@@ -28,20 +28,20 @@
 
 
 
-def find_median_sorted_arrays(nums1, nums2)
+def find_median_sorted_arrays(nums1, nums2):
     nums = []
-    while nums1.length > 0 && nums2.length > 0 # based on merge sort
-        if nums1[-1] > nums2[-1]
-            nums << nums1.pop # can't remember if shift is O(1) or O(n), so using pop instead
-        else
-            nums << nums2.pop
-        end
-    end
-    nums = nums1 + nums2 + nums.reverse # needs to reverse because I used pop
-    len = nums.length
-    if len % 2 == 0
-        (nums[len/2] + nums[len/2-1])/2.0
-    else
-        nums[len/2]
-    end
-end
+    while len(nums1) * len(nums2) > 0: # based on merge sort
+        if nums1[-1] > nums2[-1]:
+            nums.append(nums1.pop()) # can't remember if shift is O(1) or O(n), so using pop instead
+        else:
+            nums.append(nums2.pop())
+    nums.reverse()
+    nums = nums1 + nums2 + nums # needs to reverse because I used pop
+    l = len(nums)
+    if l % 2 == 0:
+        return (nums[l/2] + nums[l/2-1])/2
+    else:
+        return nums[l//2]
+ 
+
+print(find_median_sorted_arrays([0,3,4,5,7],[1,9,10,12]))
