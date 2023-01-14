@@ -5,29 +5,27 @@
 
 
 
-def num_rectangles(a,b)
+def num_rectangles(a,b):
     total = 0
-    (1..a).each do |i|
-        (1..b).each {|j| total += i * j}
-    end
-    total
-end
-
-# puts num_rectangles(1,100)
+    for i in range(1,a+1):
+        for j in range(1,b+1):
+            total += i * j
+    return total
 
 
-def less_than_2_million
+print(num_rectangles(1,100))
+
+
+def less_than_2_million():
     max = [1,1,1]
-    (1..53).each do |i|
+    for i in range(1,54):
         j = 1
         k = 1
-        while k < 2000000
-            max = [i,j,k] if k > max[-1]
+        while k < 2000000:
+            if k > max[-1]:
+                max = [i,j,k] 
             j += 1
             k = num_rectangles(i,j)
-        end
-    end
-    max[0]*max[1]
-end
+    return max[0] * max[1]
 
-# puts less_than_2_million
+print(less_than_2_million())
