@@ -21,7 +21,7 @@ end
 ```
 Note that there are only two cruisers, but my code will count 4 sequences of three spaces occupied by a ship -- the battleship will be counted as two cruisers.
 
-I especially like LeetCode problem 41 as well, because it's so elegant with the Set class in Python:
+I especially like LeetCode problem 41 as well -- it's so elegant with the Set class in Python:
 ```
 class Solution(object):
     def firstMissingPositive(self, nums):
