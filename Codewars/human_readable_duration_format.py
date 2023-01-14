@@ -32,7 +32,7 @@
 
 
 def format_duration(seconds):
-    if seconds == 0
+    if seconds == 0:
         return 'now'
     minutes = seconds // 60
     hours = minutes // 60
@@ -42,18 +42,34 @@ def format_duration(seconds):
     minutes = minutes % 60
     hours = hours % 24
     days = days % 365
-    str = []
-    str << '1 second' if seconds == 1
-    str << "#{seconds.to_s} seconds" if seconds > 1
-    str << '1 minute' if minutes == 1
-    str << "#{minutes} minutes" if minutes > 1
-    str << '1 hour' if hours == 1
-    str << "#{hours} hours" if hours > 1
-    str << '1 day' if days == 1
-    str << "#{days} days" if days > 1
-    str << '1 year' if years == 1
-    str << "#{years} years" if years > 1
-    str = str.reverse
-    if str.length > 2
-        str = [str[0..str.length-2].join(', '),str[-1]]
-    return str.join(' and ')
+    st = []
+    if seconds == 1:
+        st.append('1 second')
+    elif seconds > 0:
+        st.append(f"{str(seconds)} seconds")
+    if minutes == 1:
+        st.append('1 minute')
+    elif minutes > 0:
+        st.append(f"{str(minutes)} minutes")
+    if hours == 1:
+        st.append('1 hour')
+    elif hours > 0:
+        st.append(f"{str(hours)} hours")
+    if days == 1:
+        st.append('1 day')
+    elif days > 0:
+        st.append(f"{str(days)} days")
+    if years == 1:
+        st.append('1 year')
+    elif years > 0:
+        st.append(f"{str(years)} years")
+    print(st)
+    st.reverse()
+    print(st)
+    if len(st) > 2:
+        st = [', '.join(st[0:len(st)-1]),st[-1]]
+    return ' and '.join(st)
+
+
+
+# print(format_duration(1))
