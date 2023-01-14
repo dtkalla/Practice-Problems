@@ -26,44 +26,40 @@
 
 # 1 <= n <= 10^15
 
-def count_good_numbers(n)
-    half = (n/2) % 1000000006 # digit sequence repeats every 1000000006 times
+def count_good_numbers(n):
+    half = (n//2) % 1000000006 # digit sequence repeats every 1000000006 times
     num = pow_20(half)
-    num = (num * 5) % 1000000007 if n % 2 == 1
-    num
-end
+    if n % 2 == 1:
+        num = (num * 5) % 1000000007 
+    return num
 
-def pow_20(n)
+def pow_20(n):
     i = 0
-    k = (673965923**(n/1000000))%1000000007 # n % 1000000006 is still really big -- these reduce it further so the loop is in the thousands rather than billions
+    k = (673965923**(n//1000000))%1000000007 # n % 1000000006 is still really big -- these reduce it further so the loop is in the thousands rather than billions
     n = n % 1000000
-    k *= (367490513**(n/10000))%1000000007
+    k *= (367490513**(n//10000))%1000000007
     n = n % 10000
-    k *= (864605215**(n/100))%1000000007
+    k *= (864605215**(n//100))%1000000007
     n = n % 100
-    while i < n
+    while i < n:
         k = (k*20) % (1000000007)
         i += 1
-    end
-    k
-end
+    return k
 
 
-p count_good_numbers(1)
-p count_good_numbers(4)
-p count_good_numbers(50)
-p count_good_numbers(789623948667401)
+print(count_good_numbers(1))
+print(count_good_numbers(4))
+print(count_good_numbers(50))
+print(count_good_numbers(789623948667401))
 
 # run one time to determine modulo for input number
-def mod_20(n)
+def mod_20(n):
     i = 1
     k = 20
-    until k == 1
+    while k != 1:
         i += 1
         k = (k * 20) % n
-    end
-    p i
-    p k
-end
+    print(i)
+    print(k)
 
 # mod_20(1000000007)
