@@ -12,7 +12,7 @@
 
 
 
-# Unfinished -- passes all but one test case.  I could "finish" by hardcoding that test case, but I'm looking for a method that would work in general for special cases.
+# Unfinished -- passes all but one test case.  I could "finish" by hardcoding that test case, but I'm looking for a method that would work in general for special cases...
 def validate_battlefield(field)
     battleship_count = count_4(field) + count_4(field.transpose)
     cruiser_count = count_3(field) + count_3(field.transpose)
@@ -63,13 +63,3 @@ def validate_battlefield(field)
     end
     count
   end
-  
-  # def no_diagonals?(field)
-  #   (1..9).each do |i|
-  #     (1..9).each do |j|
-  #       return false if field[i][j] == 1 && field[i-1][j-1] == 1
-  #       return false if field[i-1][j] == 1 && field[i][j-1] == 1      
-  #     end
-  #   end
-  #   true
-  # end

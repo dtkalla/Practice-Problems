@@ -11,7 +11,7 @@ def find_big_square():
         if valid(i):
             return i
         i += 60
-        print(i**2)
+        # print(i**2)
         if str(i**2)[2] != '1' and str(i**2)[2] != '2':
             i += 10000000 # narrowing down the range of possbilities, speeding up the algorithm
     return i
