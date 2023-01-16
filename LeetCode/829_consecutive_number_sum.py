@@ -24,19 +24,16 @@
 # 1 <= n <= 10^9
 
 
-def consecutive_numbers_sum(n)
+def consecutive_numbers_sum(n):
     total = 0
     i = 1
-    while i**2 <= 2*n # can be written as the sum of an odd-numbered sequence
-        total += 1 if n % i == 0
-        p i
+    while i**2 <= 2*n: # can be written as the sum of an odd-numbered sequence
+        if n % i == 0:
+            total += 1 
         i += 2
-    end
     i = 2
-    while i**2 <= 2*n # can be written as the sum of an even-numbered sequence
-        total += 1 if (n + i/2) % i == 0
-        p i
+    while i**2 <= 2*n: # can be written as the sum of an even-numbered sequence
+        if (n + i/2) % i == 0:
+            total += 1 
         i += 2
-    end
-    total
-end
+    return total
