@@ -33,17 +33,19 @@
 
 
 def max_subarray_sum_circular(nums):
-    if nums.all? {|num| num >= 0}
+    if all(num >= 0 for num in nums):
         return nums.sum
-    if nums.all? {|num| num <= 0}
+    if all(num >= 0 for num in nums):
         return nums.max
-    len = nums.length
+    l = len(nums)
     max = max_sub_array(nums)
     max_start_arrs = start_arrs(nums) # subarrays that include the start value and have a larger sum than all previous starting arrays
-    max_end_arrs = start_arrs(nums.reverse)
+    rev_nums = nums
+    rev_nums.reverse()
+    max_end_arrs = start_arrs(rev_nums)
     for start_arr in max_start_arrs:
         for end_arr in max_end_arrs:
-            if start_arr[1] + end_arr[1] <= len: # can't repeat elements
+            if start_arr[1] + end_arr[1] <= l: # can't repeat elements
                 if start_arr[0] + end_arr[0] > max:
                     max = start_arr[0] + end_arr[0]
     return max
@@ -54,8 +56,8 @@ def max_sub_array(nums):
     max_sum = 0 # set can't be empty, but this only calls this function if there's at least one positive element
     for num in nums:
         current_sum += num
-        if current_sum >= 0:
-            min = 0
+        # if current_sum >= 0:
+        #     min = 0
         if current_sum < 0:
             current_sum = 0
         if current_sum > max_sum:
@@ -72,7 +74,7 @@ def start_arrs(nums):
         current_length += 1
         current_sum += num # faster than computing the sum each time
         if current_sum > max_sum:
-            max_start_arrs << [current_sum,current_length]
+            max_start_arrs.append([current_sum,current_length])
             max_sum = current_sum
     return max_start_arrs
 
