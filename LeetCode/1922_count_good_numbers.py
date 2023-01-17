@@ -50,6 +50,7 @@ def pow_20(n):
 print(count_good_numbers(1))
 print(count_good_numbers(4))
 print(count_good_numbers(50))
+print(count_good_numbers(100))
 print(count_good_numbers(789623948667401))
 
 # run one time to determine modulo for input number
