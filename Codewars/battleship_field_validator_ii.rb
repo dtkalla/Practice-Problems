@@ -13,14 +13,19 @@
 
 
 # Unfinished -- passes all but one test case.  I could "finish" by hardcoding that test case, but I'm looking for a method that would work in general for special cases...
-def validate_battlefield(field)
+  def validate_battlefield(field)
     battleship_count = count_4(field) + count_4(field.transpose)
-    cruiser_count = count_3(field) + count_3(field.transpose)
     destroyer_count = count_2(field) + count_2(field.transpose)
     submarine_count = count_1(field)
+    battleships = find_battleships(field)
+    max_cruiser_count = 0
+    battleships.each do |battleship|
+      cruiser_count = count_3(field,battleship) + count_3(field.transpose,battleship)
+      max_cruiser_count = cruiser_count if cruiser_count > max_cruiser_count
+    end
     # the counts will be higher if ships are next to each other
     return false unless battleship_count >= 1
-    return false unless cruiser_count >= 4
+    return false unless max_cruiser_count >= 2
     return false unless destroyer_count >= 10
     return false unless submarine_count == 20
     true
@@ -44,7 +49,11 @@ def validate_battlefield(field)
     count
   end
   
-  def count_3(field)
+  def count_3(field,battleship)
+    battleship.each do |point|
+      x,y = point
+      field[x][y] = 0
+    end
     count = 0
     field.each do |row|
       (0..7).each do |i|
@@ -63,3 +72,41 @@ def validate_battlefield(field)
     end
     count
   end
+
+  def find_battleships(field)
+    battleships = []
+    (0..9).each do |i|
+      (0..6).each do |j|
+        if (j..j+3).all? {|k| field[i][k] == 1}
+          battleship = []
+          (j..j+3).each {|k| battleship << [i,k]}
+          battleships << battleship
+        end
+      end
+    end
+    field = field.transpose
+    (0..9).each do |i|
+      (0..6).each do |j|
+        if (j..j+3).all? {|k| field[i][k] == 1}
+          battleship = []
+          (j..j+3).each {|k| battleship << [k,i]}
+          battleships << battleship
+        end
+      end
+    end
+    battleships
+  end
+
+
+hard_example = [[0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+                [0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+                [0, 1, 1, 1, 0, 1, 1, 0, 0, 0],
+                [0, 1, 0, 0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+p validate_battlefield(hard_example)
