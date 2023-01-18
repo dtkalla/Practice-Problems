@@ -13,7 +13,7 @@
 
 
 
-
+#very much not yet rewritten in python...
 def runoff(voters):
     majority = voters.length//2 + 1
     until voters_empty?(voters)
