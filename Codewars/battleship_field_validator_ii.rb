@@ -23,11 +23,13 @@
       cruiser_count = count_3(field,battleship) + count_3(field.transpose,battleship)
       max_cruiser_count = cruiser_count if cruiser_count > max_cruiser_count
     end
+    sub_count = singleton_count(field)
     # the counts will be higher if ships are next to each other
     return false unless battleship_count >= 1
     return false unless max_cruiser_count >= 2
     return false unless destroyer_count >= 10
     return false unless submarine_count == 20
+    return false unless sub_count < 5
     true
   end
   
@@ -97,6 +99,29 @@
     battleships
   end
 
+  def singleton_count(field)
+    dirs = [[1,0],[-1,0],[0,1],[0,-1]]
+    total = 0
+    (0..9).each do |i|
+      (0..9).each do |j|
+        if field[i][j] == 1
+          valid = true
+          dirs.each do |dir|
+            a = i + dir[0]
+            b = j + dir[1]
+            valid = false if (0..9).cover?(a) && (0..9).cover?(b) && field[a][b] == 1
+          end
+          total += 1 if valid
+        end
+      end
+    end
+    p total
+    total
+  end
+
+
+
+random_example = [[0, 0, 0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 0], [0, 0, 0, 1, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 1, 0, 0, 0, 0, 0]]
 
 hard_example = [[0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
@@ -110,3 +135,4 @@ hard_example = [[0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 p validate_battlefield(hard_example)
+p validate_battlefield(random_example)
