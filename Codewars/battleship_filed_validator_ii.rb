@@ -20,7 +20,7 @@ def validate_battlefield(field)
     submarine_count = count_1(field)
     # the counts will be higher if ships are next to each other
     return false unless battleship_count >= 1
-    return false unless cruiser_count >= 2
+    return false unless cruiser_count >= 4
     return false unless destroyer_count >= 10
     return false unless submarine_count == 20
     true
