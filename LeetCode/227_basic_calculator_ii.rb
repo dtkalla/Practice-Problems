@@ -83,7 +83,7 @@ def calculate2(s)
 end
 
 
-p calculate("3+2*2")
-p calculate(" 3/2 ")
-p calculate(" 3+5 / 2 ")
-p calculate("1+2*5/3+6/4*2")
+p calculate("3+2*2") #7
+p calculate(" 3/2 ") #1
+p calculate(" 3+5 / 2 ") #5
+p calculate("1+2*5/3+6/4*2") #6

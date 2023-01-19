@@ -1,6 +1,6 @@
 # Practice Problems
 
-Other than actual projects, I mostly practice coding with three sites: Codewars, Project Euler, and LeetCode.  This repository includes a selection of problems I enjoyed from different sites.  I generally prefer coding in Ruby, but I like to code in Python periodically as well and keep my skills sharp, so both are used here.  (I get plenty of practice with JavaScript from my projects.)
+Other than actual projects, I mostly practice coding with three sites: Codewars, Project Euler, and LeetCode.  This repository includes a selection of problems I enjoyed from different sites.  I generally prefer coding in Ruby, but I like to code or rewrite solutions in Python periodically as well to stay sharp.  (I get plenty of practice with JavaScript from my projects.)
 
 Each problem has the prompt at the top and my work below.  All of the problems were fun and challenging, and they all show my coding style fairly well.
 
@@ -35,7 +35,7 @@ class Solution(object):
 
 ### Coding Stats
 
-Top 2.5% on Codewars, top 5% on Project Euler
+Top 2.5% on Codewars, top 5% on Project Euler, top 10% on LeetCode
 
 ![Daniel's Codewars stats -- 3 kyu, 1538 honor, top languages: Ruby, Python, JavaScript](https://github.r2v.ch/codewars?user=dkalla&top_languages=true)
 
