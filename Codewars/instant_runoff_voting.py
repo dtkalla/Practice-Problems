@@ -13,29 +13,39 @@
 
 
 
-#very much not yet rewritten in python...
 def runoff(voters):
-    majority = voters.length//2 + 1
-    until voters_empty?(voters)
-        counts = Hash.new(0)
-        voters.each {|voter| counts[voter[0]] += 1}
+    majority = len(voters)//2 + 1
+    while not voters_empty(voters):
+        counts = {}
+        for voter in voters:
+            if voter[0] in counts:
+                counts[voter[0]] += 1
+            else:
+                counts[voter[0]] = 1
         max = 0
         max_candidate = voters[0][0]
         min = majority
-        counts.each do |k,v|
-            min = v if v < min
-            max,max_candidate = v,k if v > max
-        return max_candidate if max >= majority
+        for key in counts:
+            if counts[key] < min:
+                min = counts[key]
+            if counts[key] > max:
+                max,max_candidate = counts[key],key 
+        if max >= majority:
+            return max_candidate 
         mins = []
-        voters.each do |voter|
-            mins << voter[0] if counts[voter[0]] == min and not mins.include?(voter[0])
-        voters[0].each do |vote|
-            mins = [vote] if counts[vote] == 0
-        voters.each do |voter|
-            mins.each do |min_c|
-                voter.delete(min_c)
+        for voter in voters:
+            if counts[voter[0]] == min and voter[0] not in mins:
+                mins.append(voter[0]) 
+        for vote in voters[0]:
+            if vote not in counts:
+                mins = [vote]
+        for voter in voters:
+            for min_c in mins:
+                voter.remove(min_c)
     return None
 
-def voters_empty?(voters)
-  voters.all? {|voter| voter.empty?}
-end
+def voters_empty(voters):
+    for voter in voters:
+        if len(voter) > 0:
+            return False
+    return True
