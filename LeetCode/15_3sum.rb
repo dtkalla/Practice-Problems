@@ -32,6 +32,8 @@
 # -10^5 <= nums[i] <= 10^5
 
 
+require 'set'
+
 def three_sum(nums)
     pos = []
     zero = []
@@ -47,8 +49,8 @@ def three_sum(nums)
     end
     positives = Set[]
     negatives = Set[]
-    pos.each {|p| positives.add(p)}
-    neg.each {|n| negatives.add(n)}
+    pos.each {|po| positives.add(po)}
+    neg.each {|ne| negatives.add(ne)}
     trips = []
     trips << [0,0,0] if zero.length > 2
     if zero.length > 0
@@ -59,14 +61,14 @@ def three_sum(nums)
     (1...neg.length).each do |i|
         (0...i).each do |j|
             sum = neg[i] + neg[j]
-            trips << [neg[i],neg[j],-1*sum] if positives.include?(-1*sum)
+            trips << [neg[i],neg[j],-1*sum].sort if positives.include?(-1*sum)
         end
     end
     (1...pos.length).each do |i|
         (0...i).each do |j|
             sum = pos[i] + pos[j]
-            trips << [pos[i],pos[j],-1*sum] if negatives.include?(-1*sum)
+            trips << [pos[i],pos[j],-1*sum].sort if negatives.include?(-1*sum)
         end
     end
-    trips.uniq
+    trips.uniq.sort
 end
